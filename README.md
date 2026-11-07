@@ -1,4 +1,4 @@
-# Malaria cell classification: COMP3204 CW2
+# Malaria cell classification
 
 This project compares hand-crafted computer vision features with deep features for detecting malaria parasites in thin blood smear cells. It uses the NIH "Cell Images for Detecting Malaria" dataset.
 
