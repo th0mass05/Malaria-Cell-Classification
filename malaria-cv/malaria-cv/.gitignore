@@ -1,0 +1,17 @@
+# data and generated artefacts (never commit these)
+data/
+cache/
+checkpoints/
+*.pt
+*.npy
+# python
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+# os / editors
+.DS_Store
+.vscode/
+.idea/
+# secrets
+kaggle.json

@@ -1,0 +1,17 @@
+# Core
+numpy>=1.26
+pandas>=2.1
+matplotlib>=3.8
+tqdm>=4.66
+# Traditional CV and classical ML
+opencv-python>=4.9
+scikit-image>=0.22
+scikit-learn>=1.4
+# Deep learning (install the CUDA build from pytorch.org if you have an NVIDIA GPU)
+torch>=2.2
+torchvision>=0.17
+grad-cam>=1.5
+# Data download and notebooks
+kaggle>=1.6
+jupyter>=1.0
+pytest>=8.0
