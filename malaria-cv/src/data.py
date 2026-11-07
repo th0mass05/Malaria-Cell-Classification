@@ -1,4 +1,4 @@
-"""Helpers to load images and fold indices from splits.csv."""
+# Helpers to load images and fold indices from splits.csv.
 import cv2
 import numpy as np
 import pandas as pd
@@ -11,13 +11,13 @@ def load_splits(path=SPLITS_CSV) -> pd.DataFrame:
 
 
 def fold_indices(df: pd.DataFrame, fold: int):
-    """Return (train_idx, test_idx) numpy arrays for one outer fold."""
+    # Return (train_idx, test_idx) numpy arrays for one outer fold.
     test = df["fold"].to_numpy() == fold
     return np.flatnonzero(~test), np.flatnonzero(test)
 
 
 def load_image(filename: str, size: int | None = None) -> np.ndarray:
-    """Load an image as RGB uint8, optionally resized to size x size."""
+    # Load an image, optionally resized to size x size.
     img = cv2.imread(str(DATA_DIR / filename), cv2.IMREAD_COLOR)
     if img is None:
         raise FileNotFoundError(filename)

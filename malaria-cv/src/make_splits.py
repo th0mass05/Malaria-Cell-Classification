@@ -1,12 +1,4 @@
-"""Build splits.csv: a patient-level (grouped) stratified k-fold split.
 
-Cells from the same slide/patient must never appear in both train and test,
-otherwise results are optimistically biased (data leakage).
-
-Usage:  python -m src.make_splits
-CHECK THE PRINTED GROUP COUNTS: the patient/slide ID is inferred from the
-filename prefix (the text before "_IMG"), which should be verified by P1.
-"""
 import re
 
 import pandas as pd
@@ -14,19 +6,20 @@ from sklearn.model_selection import StratifiedGroupKFold
 
 from src.config import CLASSES, DATA_DIR, N_FOLDS, SEED, SPLITS_CSV
 
+# Grab everytjing in the file name before _IMG
 _GROUP_RE = re.compile(r"^(.*?)_IMG", re.IGNORECASE)
 
 
 def group_id(filename: str) -> str:
-    """Return the slide/patient ID encoded in a filename (prefix before '_IMG')."""
+    # Return the slide/patient ID encoded in a filename (prefix before '_IMG')
     m = _GROUP_RE.match(filename)
     prefix = m.group(1) if m else filename.split("_")[0]
-    # normalise e.g. 'C33P1thinF' and 'C33P1ThinF' to the same ID
+    # normalise
     return prefix.lower().replace("thinf", "").strip("_")
 
 
 def build_splits(data_dir=DATA_DIR, n_folds=N_FOLDS, seed=SEED) -> pd.DataFrame:
-    """List all images and assign each patient group to exactly one fold."""
+    # List all images and assign each patient group to exactly one fold
     rows = []
     for label, cls in enumerate(CLASSES):
         for path in sorted((data_dir / cls).glob("*.png")):

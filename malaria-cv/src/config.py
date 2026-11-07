@@ -1,4 +1,4 @@
-"""Shared paths and constants. Import these instead of hard-coding paths."""
+
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
